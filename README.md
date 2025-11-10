@@ -52,17 +52,5 @@ Se busca que los mismos miembros participen en:
 - **Sonido y música:**  
 - **Colaboración comunitaria:** 
 
----
-
-## 💡 Futuro del Proyecto
-Planeamos expandir **Raíces Sagradas VR** como una **plataforma educativa y cultural**, integrando más territorios y lenguas indígenas de Colombia, para que la memoria viva de los pueblos ancestrales siga floreciendo en el mundo digital.
-
----
-
-## 🪶 Créditos y Reconocimientos
-Agradecemos a las comunidades indígenas de **Santander y el norte de Colombia** por compartir su conocimiento y permitirnos crear esta experiencia con respeto y admiración.  
-También a los organizadores de la **Game Jam [nombre del evento]** por promover espacios donde la cultura y la tecnología se encuentran.
-
----
-
+--- 
 > _“El territorio no solo se camina, también se escucha, se siente y se honra.”_ 🌎
