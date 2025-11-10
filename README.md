@@ -1,4 +1,4 @@
-# 🌿 **Raíces Sagradas VR**  
+# 🌿 **Voces del territorio: Guardianes del Nororiente**  
 ### _Una experiencia inmersiva de los territorios y saberes ancestrales_
 
 ## 🎮 Descripción del Proyecto
