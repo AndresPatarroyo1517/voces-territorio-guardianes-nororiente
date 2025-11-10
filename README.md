@@ -5,7 +5,7 @@
 **Raíces Sagradas VR** es una experiencia de realidad virtual desarrollada en **Unity** que invita a los usuarios a explorar los **lugares sagrados de las comunidades indígenas** del departamento de **Santander y el norte de Colombia**.  
 El proyecto busca preservar, visibilizar y honrar la **cosmovisión, tradiciones y espiritualidad** de estos pueblos, a través de una narrativa inmersiva que combina **arte, sonido y ambiente natural**.
 
-Este proyecto se desarrolla en el marco de la **Game Jam [nombre del evento]**, como una propuesta de videojuego/experiencia con impacto cultural y educativo.
+Este proyecto se desarrolla en el marco de la **Game Jam Latam 2025**, como una propuesta de videojuego/experiencia con impacto cultural y educativo.
 
 ---
 
