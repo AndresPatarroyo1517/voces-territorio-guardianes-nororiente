@@ -1,138 +1,117 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.XR.Interaction.Toolkit;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-    [Header("Configuración de Peces")]
-    public List<GameObject> peces;
-    public Color colorSecuencia = Color.blue;
-    public float tiempoMostrarPez = 1f;
-    public float tiempoEntrePeces = 0.5f;
+    public int fishRequired = 3;
+    private int fishKilled = 0;
 
-    [Header("Configuración de Vasija")]
-    public List<GameObject> pedazosVasija;
-    public GameObject vasijaCompleta;
+    public GameObject[] objectsToActivate;
+    public AudioSource victorySound;
 
-    private List<GameObject> secuenciaPeces = new List<GameObject>();
-    private int indiceSecuencia = 0;
-    private bool jugadorPuedeSeleccionar = false;
-    private bool juegoIniciado = false;
+    public TMP_Text fishCounter;
+    public GameObject counterPanel;
+    public ParticleSystem Particulas;
 
-    // MaterialPropertyBlock para modificar el color sin afectar la textura
-    private MaterialPropertyBlock propertyBlock;
-    private int colorPropertyId;
+    // CHISAGUA
+    public Animator chisaguaAnimator;
+    public AudioSource chisaguaAudio;
+    public Transform playerTransform;
+
 
     void Start()
     {
-        propertyBlock = new MaterialPropertyBlock();
-        colorPropertyId = Shader.PropertyToID("_Color");
+        foreach (var obj in objectsToActivate)
+            obj.SetActive(false);
     }
 
-    public void IniciarJuego()
+    void OnEnable()
     {
-        if (!juegoIniciado)
-        {
-            juegoIniciado = true;
-            GenerarSecuencia();
-            StartCoroutine(MostrarSecuencia());
-        }
+        Pez.OnFishKilled += AddKill;
     }
 
-    void GenerarSecuencia()
+    void OnDisable()
     {
-        secuenciaPeces.Clear();
-        for (int i = 0; i < 3; i++)
-        {
-            int indiceAleatorio = Random.Range(0, peces.Count);
-            secuenciaPeces.Add(peces[indiceAleatorio]);
-        }
+        Pez.OnFishKilled -= AddKill;
     }
 
-    IEnumerator MostrarSecuencia()
+    void AddKill()
     {
-        jugadorPuedeSeleccionar = false;
-        foreach (GameObject pez in secuenciaPeces)
-        {
-            CambiarColorPez(pez, colorSecuencia);
-            yield return new WaitForSeconds(tiempoMostrarPez);
-            RestaurarColorOriginal(pez);
-            yield return new WaitForSeconds(tiempoEntrePeces);
-        }
-        jugadorPuedeSeleccionar = true;
+        fishKilled++;
+        UpdateCounter();
+
+        if (fishKilled >= fishRequired)
+            Win();
     }
 
-    public void SeleccionarPez(GameObject pezSeleccionado)
+    void UpdateCounter()
     {
-        if (!jugadorPuedeSeleccionar || !juegoIniciado) return;
-
-        if (pezSeleccionado == secuenciaPeces[indiceSecuencia])
-        {
-            CambiarColorPez(pezSeleccionado, Color.green);
-            indiceSecuencia++;
-            if (indiceSecuencia == secuenciaPeces.Count)
-            {
-                StartCoroutine(MostrarVasijaCompleta());
-            }
-        }
-        else
-        {
-            CambiarColorPez(pezSeleccionado, Color.red);
-            StartCoroutine(ReiniciarJuego());
-        }
+        if (fishCounter != null)
+            fishCounter.text = "Peces: " + fishKilled + " / " + fishRequired;
     }
 
-    IEnumerator MostrarVasijaCompleta()
+
+    void Win()
     {
-        jugadorPuedeSeleccionar = false;
-        foreach (GameObject pedazo in pedazosVasija)
+        foreach (var obj in objectsToActivate)
+            obj.SetActive(true);
+
+        if (victorySound != null)
+            victorySound.Play();
+
+        // ACTIVAR partículas por 5 segundos exactos
+        if (Particulas != null)
         {
-            pedazo.SetActive(true);
+            Particulas.Play();
+            StartCoroutine(StopParticlesAfterTime());
         }
-        if (vasijaCompleta != null)
-        {
-            vasijaCompleta.SetActive(true);
-        }
+
+        if (counterPanel != null)
+            counterPanel.SetActive(false);
+
+        StartCoroutine(PlayChisaguaFinal());
+    }
+
+    System.Collections.IEnumerator StopParticlesAfterTime()
+    {
         yield return new WaitForSeconds(3f);
-        StartCoroutine(ReiniciarJuego());
+
+        if (Particulas != null)
+            Particulas.Stop();
     }
 
-    IEnumerator ReiniciarJuego()
-    {
-        yield return new WaitForSeconds(2f);
-        foreach (GameObject pez in peces)
-        {
-            RestaurarColorOriginal(pez);
-        }
-        foreach (GameObject pedazo in pedazosVasija)
-        {
-            pedazo.SetActive(false);
-        }
-        if (vasijaCompleta != null)
-        {
-            vasijaCompleta.SetActive(false);
-        }
-        indiceSecuencia = 0;
-        juegoIniciado = false;
-        FindObjectOfType<Carpet>().GetComponent<Collider>().enabled = true;
-    }
 
-    // Método para cambiar el color de un pez usando MaterialPropertyBlock
-    void CambiarColorPez(GameObject pez, Color nuevoColor)
+    System.Collections.IEnumerator PlayChisaguaFinal()
     {
-        Renderer renderer = pez.GetComponent<Renderer>();
-        renderer.GetPropertyBlock(propertyBlock);
-        propertyBlock.SetColor(colorPropertyId, nuevoColor);
-        renderer.SetPropertyBlock(propertyBlock);
-    }
+        // Espera al sonido de victoria (si existe)
+        if (victorySound != null && victorySound.clip != null)
+            yield return new WaitForSeconds(victorySound.clip.length);
 
-    // Método para restaurar el color original del pez
-    void RestaurarColorOriginal(GameObject pez)
-    {
-        Renderer renderer = pez.GetComponent<Renderer>();
-        renderer.GetPropertyBlock(propertyBlock);
-        propertyBlock.SetColor(colorPropertyId, Color.white); // Color original (puedes ajustarlo si es necesario)
-        renderer.SetPropertyBlock(propertyBlock);
+
+        // Chisagua mira al jugador
+        if (chisaguaAnimator != null && playerTransform != null)
+        {
+            Vector3 lookDir = playerTransform.position - chisaguaAnimator.transform.position;
+            lookDir.y = 0;
+            if (lookDir != Vector3.zero)
+                chisaguaAnimator.transform.rotation = Quaternion.LookRotation(lookDir);
+        }
+
+        // ACTIVAR animación (bool anim1 = true)
+        if (chisaguaAnimator != null)
+            chisaguaAnimator.SetBool("anim1", true);
+
+        // Reproducir audio
+        if (chisaguaAudio != null && chisaguaAudio.clip != null)
+        {
+            chisaguaAudio.Play();
+
+            // Esperar a que termine el audio
+            yield return new WaitForSeconds(chisaguaAudio.clip.length);
+        }
+
+        // 🔥 DESACTIVAR animación (anim1 = false)
+        if (chisaguaAnimator != null)
+            chisaguaAnimator.SetBool("anim1", false);
     }
 }

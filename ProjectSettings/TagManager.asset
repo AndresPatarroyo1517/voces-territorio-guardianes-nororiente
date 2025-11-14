@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 3
   tags:
   - Semilla
+  - Anchor
+  - Spear
+  - Fish
   layers:
   - Default
   - TransparentFX
