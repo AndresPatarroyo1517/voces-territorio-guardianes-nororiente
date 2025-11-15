@@ -8,6 +8,7 @@ TagManager:
   - Anchor
   - Spear
   - Fish
+  - TelaGuane
   layers:
   - Default
   - TransparentFX
