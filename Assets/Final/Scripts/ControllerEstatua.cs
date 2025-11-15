@@ -9,18 +9,33 @@ public class ControllerEstatua : MonoBehaviour
     public float detectionRadius = 0.2f;
 
     [Header("Objects To Activate")]
-    public GameObject estatua;              // Estatua a activar
-    public GameObject mascara;              // Máscara a activar
+    public GameObject estatua;
+    public GameObject mascara;
 
     [Header("Effects for Mask")]
-    public ParticleSystem mascaraParticles; // Partículas al activar la máscara
-    public AudioSource mascaraAudio;        // Audio al activar la máscara
+    public ParticleSystem mascaraParticles;
+    public AudioSource mascaraAudio;       // Primer audio
+    public AudioSource segundoAudio;       // Segundo audio
 
     private bool alreadyActivated = false;
+    private bool secondAudioPlayed = false;
 
     private void Start()
     {
         InvokeRepeating("CheckKeyItems", 0f, 0.5f);
+    }
+
+    private void Update()
+    {
+        // Cuando termine el primer audio, reproducir el segundo
+        if (alreadyActivated && mascaraAudio != null && segundoAudio != null)
+        {
+            if (!mascaraAudio.isPlaying && !secondAudioPlayed)
+            {
+                segundoAudio.Play();
+                secondAudioPlayed = true;
+            }
+        }
     }
 
     private void CheckKeyItems()
@@ -55,7 +70,6 @@ public class ControllerEstatua : MonoBehaviour
             }
         }
 
-        // Si todos los ítems están puestos y aún no se han activado
         if (allSocketsHaveItems)
         {
             ActivarObjetos();
@@ -84,11 +98,11 @@ public class ControllerEstatua : MonoBehaviour
         if (mascara != null)
             mascara.SetActive(true);
 
-        // 3. Partículas de la máscara
+        // 3. Activar partículas
         if (mascaraParticles != null)
             mascaraParticles.Play();
 
-        // 4. Audio de la máscara
+        // 4. Reproducir audio 1
         if (mascaraAudio != null)
             mascaraAudio.Play();
     }
