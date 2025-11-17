@@ -2,55 +2,78 @@
 ### _Una experiencia inmersiva de los territorios y saberes ancestrales_
 
 ## 🎮 Descripción del Proyecto
-**Raíces Sagradas VR** es una experiencia de realidad virtual desarrollada en **Unity** que invita a los usuarios a explorar los **lugares sagrados de las comunidades indígenas** del departamento de **Santander y el norte de Colombia**.  
-El proyecto busca preservar, visibilizar y honrar la **cosmovisión, tradiciones y espiritualidad** de estos pueblos, a través de una narrativa inmersiva que combina **arte, sonido y ambiente natural**.
 
-Este proyecto se desarrolla en el marco de la **Game Jam Latam 2025**, como una propuesta de videojuego/experiencia con impacto cultural y educativo.
+**Voces del Territorio** es una experiencia de realidad virtual que invita al jugador a recorrer tres territorios sagrados inspirados en las comunidades ancestrales del Nororiente colombiano: los Yariguíes, los Guanes y los Chitareros.
+A través de un viaje inmersivo, el jugador revive las memorias perdidas de estos pueblos, reconecta sus símbolos sagrados y devuelve la vida espiritual a los territorios.
+
+Cada zona presenta un espíritu guía, mecánicas únicas y un ambiente sonoro diseñado para evocar la esencia cultural de cada comunidad.
+El propósito del proyecto es visibilizar culturas marginadas u olvidadas en el tiempo, resaltar sus lugares sagrados y fomentar una reflexión profunda sobre la relación entre naturaleza, memoria y tradición.
 
 ---
 
 ## 🌎 Objetivos
-- Promover el **respeto y reconocimiento** hacia los territorios sagrados y la herencia cultural indígena.  
-- Crear una herramienta **educativa e interactiva** que difunda las historias y valores de las comunidades locales.  
-- Integrar la **tecnología VR** con la **narrativa ancestral**, conectando la innovación con la tradición.  
-- Fomentar la **colaboración comunitaria**, involucrando a miembros de las comunidades en la creación del contenido visual y sonoro.
+
+- Promover el reconocimiento y respeto hacia los territorios sagrados y la memoria cultural de los pueblos del Nororiente colombiano.
+
+- Visibilizar comunidades que han sido históricamente olvidadas, resaltando sus símbolos, tradiciones y lugares sagrados a través de una experiencia VR.
+
+- Integrar la tecnología de realidad virtual con una narrativa poética e inmersiva basada en tres territorios inspirados en culturas ancestrales.
+
+- Generar una experiencia que motive a reflexionar sobre la relación entre naturaleza, identidad y memoria.
 
 ---
 
 ## 🛠️ Tecnologías Utilizadas
-- **Unity 3D** (motor de desarrollo principal)  
-- **C#** (lógica y scripts del proyecto)  
-- **Meta Quest / SteamVR / OpenXR** (compatibilidad VR)  
-- **Blender** (modelado 3D de entornos y objetos sagrados)  
-- **Adobe Audition / Audacity** (edición de sonidos y voces)  
-- **GitHub** (control de versiones y trabajo colaborativo)
+
+- **Unity** (versión **6000.2.11f1**) – Motor principal del desarrollo.
+
+- **C#** – Programación y lógica del juego.
+
+- **Meta Quest 2** (OpenXR) – Plataforma sobre la cual se probó y ejecuta la experiencia.
+
+- **Blender** – Modelado 3D y creación de objetos.
+
+- **Adobe Audition** – Edición y procesamiento de voces y sonidos.
+
+- **GitHub** – Control de versiones.
 
 ---
 
 ## 🎧 Experiencia del Usuario
+
 El jugador podrá:
-1. **Explorar** entornos naturales inspirados en los paisajes de Santander y el norte colombiano.  
-2. **Escuchar relatos y cantos** en lenguas indígenas, narrados por miembros de las comunidades.  
-3. **Interactuar** con elementos sagrados para descubrir historias, símbolos y enseñanzas.  
-4. **Reflexionar** sobre la relación entre el ser humano y la naturaleza desde una mirada ancestral.
+
+1. Explorar tres entornos inspirados en territorios **Yariguíes, Guanes** y **Chitareros**.
+
+2. Escuchar a los espíritus guías, cuyas voces han sido diseñadas con efectos sonoros rituales.
+
+3. Interactuar con objetos emblemáticos: **semillas, telares, peces, vasijas**, entre otros.
+
+4. Completar minijuegos que simbolizan **la recuperación de memorias perdidas**.
+
+5. Reconstruir la estatua del Guardián, representando la unión de los tres territorios.
+---
+
+# 📱 Instrucciones para Instalar y Ejecutar el APK (Meta Quest 2)
+
+## 1️⃣ Descargar el APK desde itch.io
+
+👉 **Descargar APK:**  
+ ```bash
+https://itch.io/jam/game-jam-latam-2025/rate/4040947
+ ```
+
+En la página encontrarás:
+
+- El **APK más reciente**.
+- **Imagenes del juego en acción**.
+- **Información completa del proyecto**.
 
 ---
 
-## 🤝 Colaboración Comunitaria
-El proyecto se desarrolla **en diálogo y respeto con las comunidades indígenas**, integrando sus voces, saberes y aprobaciones en cada etapa.  
-Se busca que los mismos miembros participen en:
-- La creación de contenido visual y sonoro.  
-- La definición de las historias a representar.  
-- La validación cultural de la experiencia.
+🤝 Enfoque Cultural
 
----
-
-## 🚀 Equipo de Desarrollo
-- **Dirección creativa:** 
-- **Programación:** 
-- **Arte y modelado 3D:** 
-- **Sonido y música:**  
-- **Colaboración comunitaria:** 
-
+Este proyecto no representa literalmente a las comunidades indígenas, sino que se inspira en elementos históricos, ambientales y simbólicos asociados a los Yariguíes, Guanes y Chitareros.
+El objetivo es reconocer, visibilizar y rendir homenaje, evitando apropiaciones o representaciones directas.
 --- 
 > _“El territorio no solo se camina, también se escucha, se siente y se honra.”_ 🌎
